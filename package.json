@@ -1,0 +1,12 @@
+{
+  "name": "career-crafter",
+  "version": "1.0.0",
+  "description": "Career Crafter Application",
+  "scripts": {
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+} 

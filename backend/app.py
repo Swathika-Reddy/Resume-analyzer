@@ -13,8 +13,19 @@ from resume_analyzer import ResumeAnalyzer
 import PyPDF2
 from io import BytesIO
 import re
+from flask import Flask, request, jsonify, send_from_directory
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../static')
+
+# Serve frontend
+@app.route('/')
+def serve_frontend():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
+
 CORS(app)  # Enable CORS for all routes
 
 # Initialize resume analyzer

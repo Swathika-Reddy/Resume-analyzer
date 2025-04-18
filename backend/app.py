@@ -6,7 +6,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import joblib
 import os
+# Change this line
 from resume_analyzer import ResumeAnalyzer
+# To this
+from backend.resume_analyzer import ResumeAnalyzer
 import PyPDF2
 from io import BytesIO
 import re
@@ -260,4 +263,4 @@ if __name__ == '__main__':
         if not resume_analyzer.train_model():
             print("Failed to train the model")
     
-    app.run(debug=True, host='0.0.0.0', port=5000) 
+    app.run(debug=True, host='0.0.0.0', port=5000)

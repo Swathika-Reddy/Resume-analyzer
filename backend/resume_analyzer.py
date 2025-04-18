@@ -8,81 +8,21 @@ import re
 
 class ResumeAnalyzer:
     def __init__(self):
-        print("Initializing ResumeAnalyzer...")
-        # Initialize vectorizers and models
-        self.skills_vectorizer = TfidfVectorizer(max_features=1000)
-        self.experience_vectorizer = TfidfVectorizer(max_features=500)
-        self.education_vectorizer = TfidfVectorizer(max_features=500)
-        self.scaler = StandardScaler()
-        self.model = RandomForestRegressor(n_estimators=100, random_state=42)
-        
-        # Check if model exists, if not train it
-        if not os.path.exists('models/resume_model.joblib'):
-            print("Model not found, training new model...")
-            self.train_model()
-        else:
-            print("Loading existing model...")
-            self.load_model()
-        
-        # Enhanced training data with more diverse resumes
+        # Add sample resumes for training
         self.sample_resumes = [
-            # Senior Software Engineer
             {
-                'skills': ['Python', 'Java', 'JavaScript', 'React', 'Node.js', 'SQL', 'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Microservices', 'REST API'],
-                'experience': '8 years of experience in software development, 3 years as team lead, multiple large-scale projects',
-                'education': 'Masters in Computer Science from Stanford University',
-                'score': 95
+                'skills': ['Python', 'Java', 'SQL'],
+                'experience': 'Software Developer with 3 years experience',
+                'education': 'Bachelor in Computer Science'
             },
-            # Junior Developer
             {
-                'skills': ['JavaScript', 'HTML', 'CSS', 'React', 'Git'],
-                'experience': '1 year of internship experience in frontend development',
-                'education': 'Bachelors in Computer Science',
-                'score': 70
+                'skills': ['JavaScript', 'React', 'HTML', 'CSS'],
+                'experience': 'Frontend Developer for 2 years',
+                'education': 'Masters in Information Technology'
             },
-            # Data Scientist
-            {
-                'skills': ['Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'Pandas', 'NumPy', 'SQL', 'Data Visualization'],
-                'experience': '5 years of experience in data science, published research papers',
-                'education': 'PhD in Machine Learning',
-                'score': 90
-            },
-            # DevOps Engineer
-            {
-                'skills': ['AWS', 'Azure', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'Linux', 'Python', 'Shell Scripting'],
-                'experience': '6 years of experience in cloud infrastructure and automation',
-                'education': 'Bachelors in Computer Engineering',
-                'score': 88
-            },
-            # UI/UX Designer
-            {
-                'skills': ['Figma', 'Adobe XD', 'UI/UX Design', 'Prototyping', 'User Research', 'HTML', 'CSS'],
-                'experience': '4 years of experience in UI/UX design, worked with multiple startups',
-                'education': 'Bachelors in Design',
-                'score': 85
-            },
-            # Project Manager
-            {
-                'skills': ['Project Management', 'Agile', 'Scrum', 'JIRA', 'Communication', 'Leadership', 'Risk Management'],
-                'experience': '7 years of experience in project management, led teams of 20+ members',
-                'education': 'MBA in Project Management',
-                'score': 87
-            },
-            # Entry Level Developer
-            {
-                'skills': ['Python', 'Java', 'SQL', 'Git'],
-                'experience': 'Recent graduate with internship experience',
-                'education': 'Bachelors in Computer Science',
-                'score': 65
-            },
-            # Senior Data Analyst
-            {
-                'skills': ['SQL', 'Python', 'Tableau', 'Power BI', 'Excel', 'Data Analysis', 'Statistics'],
-                'experience': '6 years of experience in data analysis, worked with large datasets',
-                'education': 'Masters in Data Science',
-                'score': 86
-            }
+            # Add more sample resumes as needed
         ]
+        self.model_path = 'models/resume_model.joblib'
 
     def train_model(self):
         try:
@@ -302,4 +242,4 @@ class ResumeAnalyzer:
             role_matches[role] = matches
         
         # Return role with most matches
-        return max(role_matches.items(), key=lambda x: x[1])[0] if role_matches else 'other' 
+        return max(role_matches.items(), key=lambda x: x[1])[0] if role_matches else 'other'

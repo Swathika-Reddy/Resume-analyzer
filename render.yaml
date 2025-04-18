@@ -3,10 +3,10 @@ services:
     name: resume-analyzer
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: PYTHONPATH=$PYTHONPATH:. gunicorn backend.app:app
+    startCommand: gunicorn --chdir backend app:app
     rootDir: .
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
       - key: PYTHONPATH
-        value: .
+        value: /opt/render/project/src

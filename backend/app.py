@@ -7,9 +7,9 @@ import pandas as pd
 import joblib
 import os
 # Change this line
-from resume_analyzer import ResumeAnalyzer
-# To this
 from backend.resume_analyzer import ResumeAnalyzer
+# To this
+from resume_analyzer import ResumeAnalyzer
 import PyPDF2
 from io import BytesIO
 import re

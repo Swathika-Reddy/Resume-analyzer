@@ -3,10 +3,14 @@ services:
     name: resume-analyzer
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --chdir backend app:app
+    startCommand: gunicorn --chdir backend app:app --bind 0.0.0.0:$PORT
     rootDir: .
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
       - key: PYTHONPATH
         value: /opt/render/project/src
+      - key: PORT
+        value: 10000
+      - key: FLASK_ENV
+        value: production

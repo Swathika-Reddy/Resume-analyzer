@@ -253,6 +253,10 @@ def analyze_resume():
         print(f"Error in analyze_resume endpoint: {str(e)}")
         return jsonify({'error': f'An unexpected error occurred: {str(e)}'}), 500
 
+@app.route('/')
+def home():
+    return jsonify({'message': 'Resume Analyzer API is running'}), 200
+
 if __name__ == '__main__':
     # Create models directory if it doesn't exist
     os.makedirs('models', exist_ok=True)
